@@ -50,13 +50,16 @@ directory to be run from there with the jar files.
 3. RUNNING THE CODE
 
 The sample app (com.solacesystems.demo.MatchingEngineSample) supports these arguments:
-USAGE: <IP> <APP-ID> <APP-INST-#> <SOL-VPN> <SOL-USER> <SOL-PASS> <QUEUE> <LVQ> <OUT-TOPIC>
+
+pkg/bin/run-app.sh <IP> <APP-ID> <APP-INST-#> <SOL-VPN> <SOL-USER> <SOL-PASS> <QUEUE> <LVQ> <OUT-TOPIC>
 
 The driver app (com.solacesystems.demo.MockOrderGateway) supports these arguments:
-USAGE: SamplePublisher <HOST> <VPN> <USER> <PASS> <PUB-TOPIC> <STARTID>
+
+pkg/bin/run-ogw.sh <HOST> <VPN> <USER> <PASS> <PUB-TOPIC> <STARTID>
 
 Run several instances of the consumer, e.g.:
-java -cp clustered-app-lvq.jar:sol-jcsmp.jar:sol-common.jar:commons-lang.jar:commons-logging.jar: -jar clustered-matcher-sample.jar
- ... com.solacesystems.demo.MatchingEngineSample 192.168.56.102 app1 1 ha_demo app1 app1 app1_inst1 app1_lvq trade/app1/new
- ... com.solacesystems.demo.MatchingEngineSample 192.168.56.102 app1 2 ha_demo app1 app1 app1_inst2 app1_lvq trade/app1/new
- ... com.solacesystems.demo.MockOrderGateway 192.168.56.102 ha_demo ogw ogw order/app1/new 1
+pkg/bin/run-app.sh 192.168.56.102 app1 1 ha_demo app1 app1 app1_inst1 app1_lvq trade/app1/new
+pkg/bin/run-app.sh 192.168.56.102 app1 2 ha_demo app1 app1 app1_inst2 app1_lvq trade/app1/new
+
+And run one instance of the driver, e.g.:
+pkg/bin/run-ogw.sh 192.168.56.102 ha_demo ogw ogw order/app1/new 1
