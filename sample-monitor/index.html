@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+.vertical{
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  font-family: sans-serif;
+  color:#666;
+}
+.standard{
+  font-family: sans-serif;
+  color:#666;
+}
+.active {  
+  background: lightgreen;  
+} 
+.backup {  
+  background: #FF3300;  
+} 
+
+.uptodate {  
+  background: lightgreen;  
+} 
+.recovering {  
+  background: yellow;  
+} 
+.connected {  
+  background: yellow;  
+}
+.disconnected {  
+  background: #FF3300;  
+}
+
+</style>
+<script src="./solclient.js"></script>
+<script src="./monitor.js"></script>
+
+<body onload="init()">
+
+<!-- + - + - + - + - + - + - + - + - + - + - + - + - + -->
+<!--          MONITOR DISPLAY                          -->
+<!-- + - + - + - + - + - + - + - + - + - + - + - + - + -->
+<TABLE align=center>
+  <TR><TD colspan=4><H1 class=standard align=center>HA Cluster Demo</H1></TD></TR>
+  <TR>
+    <td colspan=2 class="standard" align=right>Host: <input class=standard id=host value="192.168.56.102"></td>
+    <td colspan=2 class="standard" align=right>User: <input class=standard id=user value="test"></td>
+  </TR>
+  <TR>
+    <td colspan=2 class="standard" align=right>VPN: <input class=standard id=vpn value="ha_demo"></td>
+    <td colspan=2 class="standard" align=right>Password: <input class=standard id=pass type="password" value="foo"></td>
+  </TR>
+  <TR>
+    <td colspan=3></td>
+    <td class="standard" align="right"><input class="standard" type="button" id="clear" value="Clear">
+    <input class="standard" type="button" onclick="initSolaceConn()" id="connect" value="CONNECT"></td>
+  </TR>
+  <TR>
+    <td></td>
+    <TD class="standard" align=center>Instance 1</TD>
+    <TD class="standard" align=center>Instance 2</TD>
+    <TD class="standard" align=center>Instance 3</TD>
+  </TR>
+  <TR>
+    <TD class="standard" align=right>HA Status:</TD>
+    <TD class="standard"><input class="backup" id=HAStatus1></TD>
+    <TD class="standard"><input class="backup" id=HAStatus2></TD>
+    <TD class="standard"><input class="backup" id=HAStatus3></TD>
+  </TR>
+  <TR>
+    <TD class="standard" align=right>Seq Status:</TD>
+    <TD class="standard"><input class="disconnected" id=SeqStatus1></TD>
+    <TD class="standard"><input class="disconnected" id=SeqStatus2></TD>
+    <TD class="standard"><input class="disconnected" id=SeqStatus3></TD>
+  </TR>
+  <TR>
+    <TD class="standard" align=right>Last Input:</TD>
+    <TD class="standard"><input id=LastInput1></TD>
+    <TD class="standard"><input id=LastInput2></TD>
+    <TD class="standard"><input id=LastInput3></TD>
+  </TR>
+  <TR>
+    <TD class="standard" align=right>Last Output:</TD>
+    <TD class="standard"><input id=LastOutput1></TD>
+    <TD class="standard"><input id=LastOutput2></TD>
+    <TD class="standard"><input id=LastOutput3></TD>
+  </TR>
+</TABLE>
+<!-- input align=center id=lastDisconnect -->
+
+</body>
+</html>

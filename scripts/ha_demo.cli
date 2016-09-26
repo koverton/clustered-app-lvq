@@ -1,0 +1,54 @@
+home
+en
+conf
+
+create message-vpn ha_demo
+authentication user-class client
+basic auth-type none
+exit
+exit
+event publish-message-vpn
+event publish-client
+no shutdown
+
+end
+conf 
+client-username default message-vpn ha_demo
+no shutdown
+exit
+client-profile default message-vpn ha_demo
+message-spool
+allow-guaranteed-message-send
+allow-guaranteed-message-receive
+
+end
+conf
+message-spool message-vpn ha_demo
+max-spool-usage 1000
+
+create queue app1_inst1
+max-spool-usage 100
+permission all delete
+subscription topic order/app1/>
+no shutdown full
+exit
+
+create queue app1_inst2
+max-spool-usage 100
+permission all delete
+subscription topic order/app1/>
+no shutdown full
+exit
+
+create queue app1_inst3
+max-spool-usage 100
+permission all delete
+subscription topic order/app1/>
+exit
+
+create queue app1_lvq
+max-spool-usage 0
+permission all delete
+subscription topic trade/app1/>
+no shutdown full
+exit
